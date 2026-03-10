@@ -4,6 +4,8 @@ const BG_WIDTH: float = 1280.0
 
 @export var good_item_scene: PackedScene
 @export var bad_item_scene: PackedScene
+@export var pool_size: int = 15
+
 @export var spawn_x: float = 1380.0
 @export var lane_positions: Array[float] = [460.0, 380.0, 300.0]
 @export var initial_spawn_interval: float = 1.0
@@ -27,17 +29,37 @@ const BAD_ITEM_NAMES: Array[String] = ["caixa dois", "offshore suspeita", "recib
 var elapsed_time: float = 0.0
 var difficulty_level: int = 0
 var game_over_handled: bool = false
+var _good_pool: Array[Node2D] = []
+var _bad_pool: Array[Node2D] = []
+
 
 func _ready() -> void:
 	GameState.reset()
 	randomize()
 
 	_init_signal_connections()
+	_init_pools()
 
 	spawn_timer.wait_time = initial_spawn_interval
 	if not spawn_timer.timeout.is_connected(_on_spawn_timer_timeout):
 		spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
+
+func _init_pools() -> void:
+	# Inicializa as duas pools, instanciando e mantendo invisiveis
+	for i in range(pool_size):
+		var g_item = good_item_scene.instantiate() as Node2D
+		add_child(g_item)
+		g_item.add_to_group("spawned_item")
+		g_item.call("deactivate")
+		_good_pool.append(g_item)
+
+		var b_item = bad_item_scene.instantiate() as Node2D
+		add_child(b_item)
+		b_item.add_to_group("spawned_item")
+		b_item.call("deactivate")
+		_bad_pool.append(b_item)
+
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause_game") and not GameState.is_game_over:
@@ -67,18 +89,24 @@ func _on_spawn_timer_timeout() -> void:
 	var lane_index: int = randi_range(0, lane_positions.size() - 1)
 	var bad_spawn_probability: float = minf(0.65, 0.45 + float(difficulty_level) * 0.03)
 	var spawn_good: bool = randf() > bad_spawn_probability
-	var item: Node2D = (good_item_scene.instantiate() if spawn_good else bad_item_scene.instantiate()) as Node2D
+	
+	var item: Node2D = _get_item_from_pool(_good_pool if spawn_good else _bad_pool)
 	if item == null:
 		return
 
-	item.position = Vector2(spawn_x, lane_positions[lane_index])
-	add_child(item)
-	item.add_to_group("spawned_item")
+	item.call("reset_state", Vector2(spawn_x, lane_positions[lane_index]))
 
 	if spawn_good and item.has_method("set_item_label_text"):
 		item.call("set_item_label_text", GOOD_ITEM_NAMES.pick_random())
 	elif not spawn_good and item.has_method("set_item_label_text"):
 		item.call("set_item_label_text", BAD_ITEM_NAMES.pick_random())
+
+func _get_item_from_pool(pool: Array[Node2D]) -> Node2D:
+	for item in pool:
+		if is_instance_valid(item) and item.get("is_active") == false:
+			return item
+	return null
+
 
 func _update_difficulty() -> void:
 	var target_level: int = int(floor(elapsed_time / difficulty_step_seconds))
@@ -112,10 +140,11 @@ func _handle_game_over() -> void:
 	game_over_handled = true
 	spawn_timer.stop()
 
-	var spawned_items: Array[Node] = get_tree().get_nodes_in_group("spawned_item")
-	for item in spawned_items:
-		if is_instance_valid(item):
-			item.queue_free()
+	# Apenas resetamos o comportamento fisico e visao dos itens ativados
+	for item in _good_pool + _bad_pool:
+		if is_instance_valid(item) and item.get("is_active"):
+			item.call("deactivate")
+
 
 func _init_signal_connections() -> void:
 	if not GameState.good_item_collected.is_connected(_on_good_item_collected):
