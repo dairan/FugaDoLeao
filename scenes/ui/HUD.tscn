@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 520.0
+offset_bottom = 290.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+text = "Pontuação: 0"
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+text = "Velocidade: 320"
+
+[node name="DebtLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+text = "Dívida: R$ 0"
+
+[node name="DistanceLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+text = "Distância do leão: 220 m"
+
+[node name="RiskLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+text = "Risco fiscal: Médio"
+
+[node name="ComboLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+text = "Combo de pagamento: x1.0"
+
+[node name="PauseLabel" type="Label" parent="."]
+offset_left = 500.0
+offset_top = 30.0
+offset_right = 780.0
+offset_bottom = 70.0
+text = "PAUSADO"
+horizontal_alignment = 1
+visible = false
+
+[node name="GameOverLabel" type="Label" parent="."]
+offset_left = 330.0
+offset_top = 270.0
+offset_right = 950.0
+offset_bottom = 410.0
+text = "GAME OVER\nO leão te alcançou. Aperte R para reiniciar."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
