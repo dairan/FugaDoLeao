@@ -1,24 +1,25 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/items/good_item.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/art/item_good_tax.svg" id="2"]
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 24.0
+radius = 22.0
 
 [node name="GoodItem" type="Area2D"]
 script = ExtResource("1")
 monitoring = true
 monitorable = true
 
-[node name="Visual" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, -28, 28, 0, 0, 28, -28, 0)
-color = Color(0.160784, 0.784314, 0.384314, 1)
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+scale = Vector2(0.8, 0.8)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -55.0
-offset_top = 34.0
-offset_right = 55.0
-offset_bottom = 62.0
+offset_left = -80.0
+offset_top = 38.0
+offset_right = 80.0
+offset_bottom = 66.0
 text = "dinheiro"
 horizontal_alignment = 1
 

@@ -1,11 +1,13 @@
 [gd_scene load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://scripts/lion/lion.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/art/lion_chaser.svg" id="2"]
 
 [node name="Lion" type="Node2D"]
 script = ExtResource("1")
 position = Vector2(120, 380)
 
-[node name="Body" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-28, -32, 36, -20, 28, 30, -32, 24)
-color = Color(0.890196, 0.623529, 0.168627, 1)
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+position = Vector2(0, -12)
+scale = Vector2(0.9, 0.9)

@@ -1,24 +1,25 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/items/bad_item.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/art/item_bad_tax.svg" id="2"]
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 24.0
+radius = 22.0
 
 [node name="BadItem" type="Area2D"]
 script = ExtResource("1")
 monitoring = true
 monitorable = true
 
-[node name="Visual" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
-color = Color(0.901961, 0.313726, 0.313726, 1)
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+scale = Vector2(0.8, 0.8)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -60.0
-offset_top = 34.0
-offset_right = 60.0
-offset_bottom = 62.0
+offset_left = -85.0
+offset_top = 38.0
+offset_right = 85.0
+offset_bottom = 66.0
 text = "caixa dois"
 horizontal_alignment = 1
 

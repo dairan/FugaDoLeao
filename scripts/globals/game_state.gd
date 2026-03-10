@@ -1,11 +1,15 @@
 extends Node
 
+signal good_item_collected
+signal bad_item_collected
+signal game_over_triggered
+
 const BASE_SPEED: float = 320.0
 const START_DISTANCE: float = 220.0
 const MAX_DISTANCE: float = 9999.0
-const PASSIVE_DISTANCE_DRAIN: float = 16.0
-const GOOD_DISTANCE_BONUS_BASE: float = 34.0
-const BAD_DISTANCE_PENALTY: float = 42.0
+const PASSIVE_DISTANCE_DRAIN: float = 14.0
+const GOOD_DISTANCE_BONUS_BASE: float = 36.0
+const BAD_DISTANCE_PENALTY: float = 46.0
 const COMBO_WINDOW_SECONDS: float = 2.2
 
 var score: int = 0
@@ -18,6 +22,7 @@ var combo_multiplier: float = 1.0
 var combo_timer: float = 0.0
 var is_paused: bool = false
 var is_game_over: bool = false
+var game_over_notified: bool = false
 
 func reset() -> void:
     score = 0
@@ -30,6 +35,7 @@ func reset() -> void:
     combo_timer = 0.0
     is_paused = false
     is_game_over = false
+    game_over_notified = false
 
 func apply_good_tax_pickup() -> void:
     if is_game_over:
@@ -47,6 +53,7 @@ func apply_good_tax_pickup() -> void:
 
     debt = max(0, debt - 55 - combo_count * 2)
     _update_risk()
+    emit_signal("good_item_collected")
 
 func apply_bad_tax_event() -> void:
     if is_game_over:
@@ -61,8 +68,9 @@ func apply_bad_tax_event() -> void:
     combo_timer = 0.0
 
     _update_risk()
+    emit_signal("bad_item_collected")
     if lion_distance <= 0.0:
-        is_game_over = true
+        _set_game_over()
 
 func tick_passive_chase(delta: float) -> void:
     if is_game_over or is_paused:
@@ -78,7 +86,16 @@ func tick_passive_chase(delta: float) -> void:
 
     _update_risk()
     if lion_distance <= 0.0:
-        is_game_over = true
+        _set_game_over()
+
+func _set_game_over() -> void:
+    if is_game_over:
+        return
+
+    is_game_over = true
+    if not game_over_notified:
+        game_over_notified = true
+        emit_signal("game_over_triggered")
 
 func _update_risk() -> void:
     if lion_distance > 180.0 and debt < 450:

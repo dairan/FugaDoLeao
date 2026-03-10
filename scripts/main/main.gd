@@ -1,5 +1,7 @@
 extends Node2D
 
+const BG_WIDTH: float = 1280.0
+
 @export var good_item_scene: PackedScene
 @export var bad_item_scene: PackedScene
 @export var spawn_x: float = 1380.0
@@ -7,11 +9,20 @@ extends Node2D
 @export var initial_spawn_interval: float = 1.0
 @export var minimum_spawn_interval: float = 0.45
 @export var difficulty_step_seconds: float = 12.0
+@export var far_parallax_speed: float = 16.0
+@export var near_parallax_speed: float = 32.0
 
 const GOOD_ITEM_NAMES: Array[String] = ["dinheiro", "DARF", "regularização", "nota em dia"]
 const BAD_ITEM_NAMES: Array[String] = ["caixa dois", "offshore suspeita", "recibo frio", "malha fina"]
 
 @onready var spawn_timer: Timer = $ItemSpawner/SpawnTimer
+@onready var far_a: Sprite2D = $Parallax/FarA
+@onready var far_b: Sprite2D = $Parallax/FarB
+@onready var near_a: Sprite2D = $Parallax/NearA
+@onready var near_b: Sprite2D = $Parallax/NearB
+@onready var good_sfx: AudioStreamPlayer = $GoodSfx
+@onready var bad_sfx: AudioStreamPlayer = $BadSfx
+@onready var game_over_sfx: AudioStreamPlayer = $GameOverSfx
 
 var elapsed_time: float = 0.0
 var difficulty_level: int = 0
@@ -20,6 +31,9 @@ var game_over_handled: bool = false
 func _ready() -> void:
 	GameState.reset()
 	randomize()
+
+	_init_signal_connections()
+
 	spawn_timer.wait_time = initial_spawn_interval
 	if not spawn_timer.timeout.is_connected(_on_spawn_timer_timeout):
 		spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -39,6 +53,8 @@ func _process(delta: float) -> void:
 
 	if GameState.is_paused:
 		return
+
+	_update_parallax(delta)
 
 	elapsed_time += delta
 	_update_difficulty()
@@ -75,6 +91,19 @@ func _update_difficulty() -> void:
 		initial_spawn_interval - float(difficulty_level) * 0.06
 	)
 
+func _update_parallax(delta: float) -> void:
+	_scroll_pair(far_a, far_b, far_parallax_speed, delta)
+	_scroll_pair(near_a, near_b, near_parallax_speed, delta)
+
+func _scroll_pair(layer_a: Sprite2D, layer_b: Sprite2D, speed: float, delta: float) -> void:
+	layer_a.position.x -= speed * delta
+	layer_b.position.x -= speed * delta
+
+	if layer_a.position.x <= -BG_WIDTH / 2.0:
+		layer_a.position.x = layer_b.position.x + BG_WIDTH
+	if layer_b.position.x <= -BG_WIDTH / 2.0:
+		layer_b.position.x = layer_a.position.x + BG_WIDTH
+
 func _toggle_pause() -> void:
 	GameState.is_paused = not GameState.is_paused
 	spawn_timer.paused = GameState.is_paused
@@ -87,3 +116,26 @@ func _handle_game_over() -> void:
 	for item in spawned_items:
 		if is_instance_valid(item):
 			item.queue_free()
+
+func _init_signal_connections() -> void:
+	if not GameState.good_item_collected.is_connected(_on_good_item_collected):
+		GameState.good_item_collected.connect(_on_good_item_collected)
+	if not GameState.bad_item_collected.is_connected(_on_bad_item_collected):
+		GameState.bad_item_collected.connect(_on_bad_item_collected)
+	if not GameState.game_over_triggered.is_connected(_on_game_over_triggered):
+		GameState.game_over_triggered.connect(_on_game_over_triggered)
+
+func _on_good_item_collected() -> void:
+	if good_sfx.playing:
+		good_sfx.stop()
+	good_sfx.play()
+
+func _on_bad_item_collected() -> void:
+	if bad_sfx.playing:
+		bad_sfx.stop()
+	bad_sfx.play()
+
+func _on_game_over_triggered() -> void:
+	if game_over_sfx.playing:
+		game_over_sfx.stop()
+	game_over_sfx.play()

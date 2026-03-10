@@ -3,6 +3,7 @@ Thumbs.db
 
 # Godot 4 editor cache/import data
 .godot/
+.vscode/
 
 # Build/export artifacts
 *.apk
