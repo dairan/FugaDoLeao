@@ -19,4 +19,5 @@ func _on_body_entered(body: Node) -> void:
         queue_free()
 
 func set_item_label_text(value: String) -> void:
-    item_label.text = value
+    if item_label != null:
+        item_label.text = value

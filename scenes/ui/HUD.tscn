@@ -40,12 +40,18 @@ text = "PAUSADO"
 horizontal_alignment = 1
 visible = false
 
+[node name="GameOverBackdrop" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.35)
+visible = false
+
 [node name="GameOverLabel" type="Label" parent="."]
-offset_left = 330.0
-offset_top = 270.0
-offset_right = 950.0
-offset_bottom = 410.0
-text = "GAME OVER\nO leão te alcançou. Aperte R para reiniciar."
+offset_left = 320.0
+offset_top = 220.0
+offset_right = 960.0
+offset_bottom = 500.0
+text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 visible = false

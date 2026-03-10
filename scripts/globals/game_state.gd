@@ -1,10 +1,11 @@
 extends Node
 
 const BASE_SPEED: float = 320.0
-const MIN_SPEED: float = 170.0
-const MAX_SPEED: float = 620.0
 const START_DISTANCE: float = 220.0
 const MAX_DISTANCE: float = 9999.0
+const PASSIVE_DISTANCE_DRAIN: float = 16.0
+const GOOD_DISTANCE_BONUS_BASE: float = 34.0
+const BAD_DISTANCE_PENALTY: float = 42.0
 const COMBO_WINDOW_SECONDS: float = 2.2
 
 var score: int = 0
@@ -36,12 +37,14 @@ func apply_good_tax_pickup() -> void:
 
     combo_count += 1
     combo_timer = COMBO_WINDOW_SECONDS
-    combo_multiplier = min(3.0, 1.0 + combo_count * 0.15)
+    combo_multiplier = minf(3.0, 1.0 + float(combo_count) * 0.15)
 
-    var score_gain := int(round(10.0 * combo_multiplier))
+    var score_gain: int = int(round(10.0 * combo_multiplier))
     score += score_gain
-    speed = clamp(speed + 22.0 + combo_count * 1.5, MIN_SPEED, MAX_SPEED)
-    lion_distance = clamp(lion_distance + 22.0 + combo_count * 1.2, 0.0, MAX_DISTANCE)
+
+    var distance_gain: float = GOOD_DISTANCE_BONUS_BASE + float(combo_count) * 2.0
+    lion_distance = clampf(lion_distance + distance_gain, 0.0, MAX_DISTANCE)
+
     debt = max(0, debt - 55 - combo_count * 2)
     _update_risk()
 
@@ -50,12 +53,13 @@ func apply_bad_tax_event() -> void:
         return
 
     score = max(0, score - 8)
-    speed = clamp(speed - 38.0, MIN_SPEED, MAX_SPEED)
-    lion_distance = clamp(lion_distance - 32.0, 0.0, MAX_DISTANCE)
+    lion_distance = clampf(lion_distance - BAD_DISTANCE_PENALTY, 0.0, MAX_DISTANCE)
     debt += 100
+
     combo_count = 0
     combo_multiplier = 1.0
     combo_timer = 0.0
+
     _update_risk()
     if lion_distance <= 0.0:
         is_game_over = true
@@ -65,12 +69,13 @@ func tick_passive_chase(delta: float) -> void:
         return
 
     if combo_timer > 0.0:
-        combo_timer = max(0.0, combo_timer - delta)
+        combo_timer = maxf(0.0, combo_timer - delta)
         if combo_timer <= 0.0:
             combo_count = 0
             combo_multiplier = 1.0
 
-    lion_distance = clamp(lion_distance - _compute_chase_speed() * delta, 0.0, MAX_DISTANCE)
+    lion_distance = clampf(lion_distance - PASSIVE_DISTANCE_DRAIN * delta, 0.0, MAX_DISTANCE)
+
     _update_risk()
     if lion_distance <= 0.0:
         is_game_over = true
@@ -82,9 +87,3 @@ func _update_risk() -> void:
         risk_level = "Médio"
     else:
         risk_level = "Alto"
-
-func _compute_chase_speed() -> float:
-    var speed_relief := (speed - BASE_SPEED) * 0.28
-    var debt_pressure := debt * 0.02
-    var raw_chase_speed := 120.0 + debt_pressure - speed_relief
-    return clamp(raw_chase_speed, 35.0, 280.0)
