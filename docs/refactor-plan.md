@@ -64,11 +64,11 @@ Critério de pronto:
 Objetivo: reduzir duplicacao e tornar o loop mais facil de ajustar.
 
 - [x] Manter item fiscal compartilhado em `tax_item.gd`.
-- [ ] Revisar se `GoodItem` e `BadItem` precisam continuar como scripts separados ou se podem virar cenas configuradas.
-- [ ] Extrair configuracoes de spawn para exports claros.
-- [ ] Documentar constantes de balanceamento em `GameState`.
-- [ ] Adicionar comentarios de contrato apenas onde houver dependencia por group, signal, node path ou pool.
-- [ ] Evitar que `Main` cresca alem de orquestracao de fase.
+- [x] Revisar se `GoodItem` e `BadItem` precisam continuar como scripts separados ou se podem virar cenas configuradas.
+- [x] Extrair configuracoes de spawn para exports claros.
+- [x] Documentar constantes de balanceamento em `GameState`.
+- [x] Adicionar comentarios de contrato apenas onde houver dependencia por group, signal, node path ou pool.
+- [x] Evitar que `Main` cresca alem de orquestracao de fase.
 
 Critério de pronto:
 
