@@ -67,9 +67,6 @@ jobs:
       - name: Print Godot version
         run: '"$GODOT_BIN" --version'
 
-      - name: Import project
-        run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --import'
-
       - name: Download GUT addon
         run: |
           set -euo pipefail
@@ -85,6 +82,9 @@ jobs:
           fi
           mkdir -p "$GITHUB_WORKSPACE/addons"
           cp -r "$GUT_DIR" "$GITHUB_WORKSPACE/addons/gut"
+
+      - name: Import project
+        run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --import'
 
       - name: Run unit tests
         run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" -s res://addons/gut/gut_cmdln.gd -- -gdir=res://tests -gexit -glog=1'
