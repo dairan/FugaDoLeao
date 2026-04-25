@@ -8,7 +8,8 @@ Documentacao curta para manter o projeto facil de retomar.
 2. `architecture.md`: estrutura tecnica atual e contratos entre scripts/cenas.
 3. `runbook.md`: comandos de validacao e fluxo local.
 4. `publishing-plan.md`: plano de publicacao por plataforma.
-5. `roadmap.md`: proximos passos recomendados.
+5. `git-workflow.md`: pratica de branches e commits.
+6. `roadmap.md`: proximos passos recomendados.
 
 ## Principio
 

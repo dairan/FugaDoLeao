@@ -31,6 +31,8 @@ Este arquivo orienta agentes de IA trabalhando neste repositorio Godot 4.
 - Use `rg` para busca textual.
 - Use `trash` em vez de `rm` quando precisar excluir arquivos.
 - Nao reverta alteracoes existentes sem pedido explicito.
+- Use trunk-based development simples: `main` e o tronco, branches curtas para tarefas pequenas e integracao rapida.
+- Antes de integrar em `main`, valide `MainMenu.tscn` e `Main.tscn` em headless.
 - Commits devem usar Conventional Commits em portugues, por exemplo:
   - `feat: adiciona controles por toque`
   - `fix: corrige colisao de itens`
