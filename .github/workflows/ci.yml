@@ -87,7 +87,7 @@ jobs:
         run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --import'
 
       - name: Run unit tests
-        run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" -s res://addons/gut/gut_cmdln.gd -- -gdir=res://tests -gexit -glog=1'
+        run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" -s res://addons/gut/gut_cmdln.gd -- -gdir=res://tests/unit -gexit -glog=1'
 
       - name: Validate menu scene
         run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --scene res://scenes/menu/MainMenu.tscn --quit-after 5'
