@@ -72,7 +72,7 @@ jobs:
         run: |
           set -euo pipefail
           curl -L \
-            "https://github.com/bitwes/Gut/releases/download/v${GUT_VERSION}/gut_v${GUT_VERSION}.zip" \
+            "https://github.com/bitwes/Gut/archive/refs/tags/v${GUT_VERSION}.zip" \
             -o "$RUNNER_TEMP/gut.zip"
           unzip -q "$RUNNER_TEMP/gut.zip" -d "$RUNNER_TEMP/gut_extracted"
           GUT_DIR="$(find "$RUNNER_TEMP/gut_extracted" -type d -name "gut" | head -n 1)"
