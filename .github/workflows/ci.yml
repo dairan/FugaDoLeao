@@ -4,9 +4,19 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'scripts/**'
+      - 'scenes/**'
+      - 'assets/**'
+      - 'project.godot'
   pull_request:
     branches:
       - main
+    paths:
+      - 'scripts/**'
+      - 'scenes/**'
+      - 'assets/**'
+      - 'project.godot'
 
 permissions:
   contents: read
@@ -16,17 +26,16 @@ jobs:
     name: Godot headless validation
     runs-on: ubuntu-24.04
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
       GODOT_VERSION: "4.6.2"
       GODOT_STATUS: stable
       GODOT_ZIP: Godot_v4.6.2-stable_mono_linux_x86_64.zip
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: "8.0.x"
 
