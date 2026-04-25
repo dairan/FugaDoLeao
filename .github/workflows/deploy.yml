@@ -59,10 +59,12 @@ jobs:
         run: |
           curl -L "https://github.com/itchio/butler/releases/download/v15.26.1/butler-linux-amd64.zip" \
             -o butler.zip
-          unzip -q butler.zip
-          chmod +x butler
+          unzip -q butler.zip -d butler_dir
+          BUTLER_BIN="$(find butler_dir -type f -name 'butler' | head -n 1)"
+          chmod +x "$BUTLER_BIN"
+          echo "BUTLER_BIN=$BUTLER_BIN" >> "$GITHUB_ENV"
 
       - name: Deploy to itch.io
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-        run: ./butler push build/web dairantf/fuga-do-leao:web
+        run: "$BUTLER_BIN" push build/web dairantf/fuga-do-leao:web
