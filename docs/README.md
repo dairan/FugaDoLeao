@@ -6,10 +6,12 @@ Documentacao curta para manter o projeto facil de retomar.
 
 1. `game-overview.md`: conceito, pilares e loop jogavel.
 2. `architecture.md`: estrutura tecnica atual e contratos entre scripts/cenas.
-3. `runbook.md`: comandos de validacao e fluxo local.
+3. `refactor-plan.md`: plano de refatoracao por fases.
 4. `publishing-plan.md`: plano de publicacao por plataforma.
-5. `git-workflow.md`: pratica de branches e commits.
-6. `roadmap.md`: proximos passos recomendados.
+5. `public-release-checklist.md`: checklist para abrir o repositorio sem vazar dados.
+6. `runbook.md`: comandos de validacao e fluxo local.
+7. `git-workflow.md`: pratica de branches e commits.
+8. `roadmap.md`: proximos passos recomendados.
 
 ## Principio
 

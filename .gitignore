@@ -1,11 +1,16 @@
 .DS_Store
 Thumbs.db
+*.log
 
 # Godot 4 editor cache/import data
 .godot/
 .vscode/
 
 # Build/export artifacts
+build/
+dist/
+exports/
+export/
 *.apk
 *.aab
 *.ipa
@@ -13,3 +18,25 @@ Thumbs.db
 *.app
 *.zip
 *.pck
+*.dmg
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.cer
+*.cert
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision
+*.provisionprofile
+
+# Store and signing metadata that should stay local unless intentionally sanitized
+local.properties
+keystore.properties
+signing.properties
