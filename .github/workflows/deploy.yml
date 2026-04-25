@@ -54,13 +54,24 @@ jobs:
           mkdir -p build/web
           "$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --export-release "Web" build/web/index.html
 
-      - name: Add headers
+      - name: Compress WASM
+        run: gzip -9 build/web/index.wasm
+
+      - name: Add headers and redirects
         run: |
           cat > build/web/_headers << 'EOF'
           /*
             Cross-Origin-Opener-Policy: same-origin
             Cross-Origin-Embedder-Policy: require-corp
             Cross-Origin-Resource-Policy: cross-origin
+
+          /index.wasm.gz
+            Content-Type: application/wasm
+            Content-Encoding: gzip
+          EOF
+
+          cat > build/web/_redirects << 'EOF'
+          /index.wasm /index.wasm.gz 200
           EOF
 
       - name: Deploy to Cloudflare Pages
