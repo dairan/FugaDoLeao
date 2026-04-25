@@ -24,8 +24,9 @@
 - `scripts/main/main.gd`: orquestracao da fase.
 - `scripts/player/player.gd`: movimento do jogador.
 - `scripts/lion/lion.gd`: movimento do leao.
-- `scripts/items/good_item.gd`: comportamento de item bom.
-- `scripts/items/bad_item.gd`: comportamento de item ruim.
+- `scripts/items/tax_item.gd`: comportamento compartilhado de item fiscal.
+- `scripts/items/good_item.gd`: especializacao de item bom.
+- `scripts/items/bad_item.gd`: especializacao de item ruim.
 - `scripts/ui/hud.gd`: leitura e exibicao do estado.
 - `scripts/menu/main_menu.gd`: menu inicial.
 
@@ -58,7 +59,7 @@ Regras de jogo como coleta boa, evento ruim, drain passivo e game over pertencem
 
 Itens inativos ficam escondidos e com `monitoring = false`. Quando o timer dispara, `Main` pega um item livre da pool, posiciona em uma faixa e reativa.
 
-Quando um item colide com um corpo no group `player`, ele chama o metodo adequado no `GameState` e se desativa.
+Quando um item colide com um corpo no group `player`, `tax_item.gd` chama o metodo adequado no `GameState` de acordo com `item_kind` e se desativa.
 
 O HUD roda como leitor do estado global. Ele atualiza labels de pontuacao, velocidade, divida, distancia, risco, combo, pausa e game over.
 
@@ -73,6 +74,6 @@ O HUD roda como leitor do estado global. Ele atualiza labels de pontuacao, veloc
 ## Regras de Evolucao
 
 - Para novos eventos de jogo, prefira sinal no `GameState` quando mais de um sistema precisar reagir.
-- Para novos tipos de item, prefira configuracao reaproveitando o contrato atual antes de duplicar scripts.
+- Para novos tipos de item, prefira configurar ou estender `tax_item.gd` antes de duplicar scripts.
 - Para mobile, adicione entrada touch no player sem quebrar input por teclado.
 - Para feedback visual, prefira efeitos locais no item/player/HUD e mantenha regras numericas no `GameState`.

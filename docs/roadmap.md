@@ -4,6 +4,14 @@
 
 Transformar o prototipo em uma experiencia curta, legivel e repetivel, mantendo a arquitetura simples.
 
+## Fase 0 - Export Baseline
+
+- Criar preset Web.
+- Validar demo Web em navegador.
+- Criar preset Android debug.
+- Validar Android em aparelho real.
+- Criar preset iOS e validar caminho Xcode cedo.
+
 ## Fase 1 - Polimento do Loop
 
 - Melhorar feedback visual de coleta boa.
