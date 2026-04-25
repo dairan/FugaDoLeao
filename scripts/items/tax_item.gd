@@ -25,6 +25,7 @@ func _on_body_entered(body: Node) -> void:
 	if not body.is_in_group("player"):
 		return
 
+	is_active = false
 	_apply_collection_effect()
 	call_deferred("deactivate")
 
