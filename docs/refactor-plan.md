@@ -142,7 +142,7 @@ Critério de pronto:
 Objetivo: garantir que a base refatorada exporta.
 
 - [x] Criar preset Web.
-- [ ] Validar demo Web em navegador.
+- [x] Validar demo Web em navegador.
 - [ ] Criar preset Android debug.
 - [ ] Criar preset iOS inicial.
 - [ ] Validar Desktop apenas como alvo opcional.
@@ -150,7 +150,7 @@ Objetivo: garantir que a base refatorada exporta.
 
 Critério de pronto:
 
-- [ ] Web abre em navegador.
+- [x] Web abre em navegador.
 - [ ] Android debug instala em aparelho.
 - [ ] iOS tem caminho de export para Xcode documentado.
 
