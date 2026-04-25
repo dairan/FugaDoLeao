@@ -64,6 +64,21 @@ cp -r /tmp/gut_extracted/addons/gut /Users/dairan/Public/Dev/Games/FugaDoLeao/ad
 /Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path /Users/dairan/Public/Dev/Games/FugaDoLeao -s res://addons/gut/gut_cmdln.gd -- -gdir=res://tests -gexit -glog=1
 ```
 
+## Exportar para Web
+
+```bash
+mkdir -p /Users/dairan/Public/Dev/Games/FugaDoLeao/build/web
+/Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path /Users/dairan/Public/Dev/Games/FugaDoLeao --export-release "Web" build/web/index.html
+```
+
+Para validar no navegador (requer servidor HTTP por causa de SharedArrayBuffer):
+
+```bash
+cd /Users/dairan/Public/Dev/Games/FugaDoLeao/build/web && python3 -m http.server 8080
+```
+
+Abra `http://localhost:8080` no browser.
+
 ## Observacoes
 
 - O binario `godot` em `/opt/homebrew/bin/godot` pode apontar para `/Applications/Godot.app`, que e a versao sem Mono.
