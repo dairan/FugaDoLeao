@@ -110,17 +110,17 @@ Critério de pronto:
 
 Objetivo: tornar o runner justo e repetivel.
 
-- [ ] Evitar sequencias longas de itens ruins.
-- [ ] Evitar spawn que gere decisao impossivel.
-- [ ] Criar chance de recuperacao apos risco alto.
+- [x] Evitar sequencias longas de itens ruins.
+- [x] Evitar spawn que gere decisao impossivel.
+- [x] Criar chance de recuperacao apos risco alto.
 - [x] Ajustar intervalo de spawn por tempo.
 - [x] Manter dificuldade progressiva simples.
 
 Critério de pronto:
 
-- [ ] Jogador consegue reagir aos spawns.
-- [ ] Dificuldade aumenta sem parecer aleatoria demais.
-- [ ] O jogo gera partidas curtas com vontade de tentar de novo.
+- [x] Jogador consegue reagir aos spawns.
+- [x] Dificuldade aumenta sem parecer aleatoria demais.
+- [x] O jogo gera partidas curtas com vontade de tentar de novo.
 
 ## Fase 5 - Feedback e Polimento
 

@@ -35,6 +35,8 @@ var difficulty_level: int = 0
 var game_over_handled: bool = false
 var _good_pool: Array[Node2D] = []
 var _bad_pool: Array[Node2D] = []
+var _consecutive_bad: int = 0
+var _last_lane: int = -1
 
 
 func _ready() -> void:
@@ -90,20 +92,33 @@ func _on_spawn_timer_timeout() -> void:
 	if GameState.is_game_over or GameState.is_paused:
 		return
 
-	var lane_index: int = randi_range(0, lane_positions.size() - 1)
-	var bad_spawn_probability: float = minf(bad_spawn_probability_max, bad_spawn_probability_base + float(difficulty_level) * bad_spawn_probability_step)
-	var spawn_good: bool = randf() > bad_spawn_probability
-	
+	var lane_index: int = _pick_lane()
+	var spawn_good: bool = _pick_item_kind()
+
 	var item: Node2D = _get_item_from_pool(_good_pool if spawn_good else _bad_pool)
 	if item == null:
 		return
 
 	item.call("reset_state", Vector2(spawn_x, lane_positions[lane_index]))
+	item.call("set_item_label_text", GOOD_ITEM_NAMES.pick_random() if spawn_good else BAD_ITEM_NAMES.pick_random())
 
-	if spawn_good and item.has_method("set_item_label_text"):
-		item.call("set_item_label_text", GOOD_ITEM_NAMES.pick_random())
-	elif not spawn_good and item.has_method("set_item_label_text"):
-		item.call("set_item_label_text", BAD_ITEM_NAMES.pick_random())
+	_last_lane = lane_index
+	_consecutive_bad = 0 if spawn_good else _consecutive_bad + 1
+
+func _pick_lane() -> int:
+	var available: Array[int] = []
+	for i in range(lane_positions.size()):
+		if i != _last_lane:
+			available.append(i)
+	return available[randi_range(0, available.size() - 1)]
+
+func _pick_item_kind() -> bool:
+	if _consecutive_bad >= 2:
+		return true
+	if GameState.risk_level == "Alto":
+		return randf() > 0.25
+	var bad_prob: float = minf(bad_spawn_probability_max, bad_spawn_probability_base + float(difficulty_level) * bad_spawn_probability_step)
+	return randf() > bad_prob
 
 func _get_item_from_pool(pool: Array[Node2D]) -> Node2D:
 	for item in pool:
