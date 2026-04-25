@@ -65,7 +65,7 @@ jobs:
             Cross-Origin-Embedder-Policy: require-corp
             Cross-Origin-Resource-Policy: cross-origin
 
-          /index.wasm.gz
+          /index.wasm
             Content-Type: application/wasm
             Content-Encoding: gzip
           EOF
