@@ -14,7 +14,7 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 ## Status Atual
 
 - [x] Varredura manual rapida nao encontrou tokens obvios nos arquivos rastreados.
-- [ ] Rodar varredura especializada com `gitleaks`.
+- [x] Rodar varredura especializada com `gitleaks`.
 - [x] `gitleaks` nao estava instalado no ambiente desta checagem.
 - [ ] Revisar mudancas locais do Obsidian antes de publicar.
 
@@ -84,7 +84,7 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 
 ## Checklist Antes de Tornar Publico
 
-1. [ ] Rodar varredura com ferramenta especializada, como `gitleaks`.
+1. [x] Rodar varredura com ferramenta especializada, como `gitleaks`.
 2. [x] Revisar `git ls-files`.
 3. [ ] Revisar historico para nomes sensiveis de arquivos.
 4. [x] Confirmar que `.gitignore` cobre signing, env e exports.
