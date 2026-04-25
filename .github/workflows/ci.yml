@@ -16,6 +16,7 @@ jobs:
     name: Godot headless validation
     runs-on: ubuntu-24.04
     env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
       GODOT_VERSION: "4.6.2"
       GODOT_STATUS: stable
       GODOT_ZIP: Godot_v4.6.2-stable_mono_linux_x86_64.zip
