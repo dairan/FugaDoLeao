@@ -80,15 +80,15 @@ Critério de pronto:
 
 Objetivo: deixar o jogo jogavel em touch sem perder teclado para desenvolvimento.
 
-- [ ] Adicionar swipe vertical para trocar de faixa.
+- [x] Adicionar swipe vertical para trocar de faixa.
 - [x] Manter `move_up` e `move_down` via keyboard.
-- [ ] Centralizar traducao de input em `Player`.
-- [ ] Evitar que UI capture swipe de gameplay indevidamente.
+- [x] Centralizar traducao de input em `Player`.
+- [x] Evitar que UI capture swipe de gameplay indevidamente.
 
 Critério de pronto:
 
 - [x] Teclado funciona no desktop.
-- [ ] Touch funciona no mobile/web mobile.
+- [x] Touch funciona no mobile/web mobile.
 - [x] Movimento continua limitado a 3 faixas.
 
 ## Fase 3 - HUD Responsivo
