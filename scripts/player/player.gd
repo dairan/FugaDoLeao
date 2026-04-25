@@ -15,10 +15,14 @@ const FRAME_INTERVAL_SECONDS: float = 0.10
 
 @onready var body_visual: Sprite2D = $Body
 
+# Minimum vertical pixels to register a touch as a swipe (not a tap).
+const SWIPE_THRESHOLD: float = 40.0
+
 var current_lane: int = 1
 var run_time: float = 0.0
 var frame_timer: float = 0.0
 var frame_index: int = 0
+var _touch_start: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	add_to_group("player")
@@ -51,6 +55,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("move_up"):
-		current_lane = min(lane_positions.size() - 1, current_lane + 1)
+		current_lane = mini(lane_positions.size() - 1, current_lane + 1)
 	elif event.is_action_pressed("move_down"):
-		current_lane = max(0, current_lane - 1)
+		current_lane = maxi(0, current_lane - 1)
+	elif event is InputEventScreenTouch:
+		if event.pressed:
+			_touch_start = event.position
+		else:
+			_apply_swipe(event.position)
+
+func _apply_swipe(end_pos: Vector2) -> void:
+	var delta := end_pos - _touch_start
+	if abs(delta.y) < SWIPE_THRESHOLD or abs(delta.x) > abs(delta.y):
+		return
+	if delta.y < 0:
+		current_lane = mini(lane_positions.size() - 1, current_lane + 1)
+	else:
+		current_lane = maxi(0, current_lane - 1)
