@@ -7,6 +7,7 @@ related:
   - game-overview.md
   - refactor-plan.md
   - runbook.md
+  - testing-strategy.md
 tags:
   - docs
   - architecture
@@ -118,3 +119,10 @@ Exemplo de comentario que tende a gerar drift:
 - Para novos tipos de item, prefira configurar ou estender `tax_item.gd` antes de duplicar scripts.
 - Para mobile, adicione entrada touch no player sem quebrar input por teclado.
 - Para feedback visual, prefira efeitos locais no item/player/HUD e mantenha regras numericas no `GameState`.
+
+## Testabilidade
+
+- Regras numericas devem permanecer em `GameState` para permitir unit tests diretos.
+- Comportamento local de item, player e leao deve ser testavel sem depender da cena completa.
+- `Main.tscn` e `MainMenu.tscn` continuam como smoke tests headless no CI.
+- Antes de refactor em scripts criticos, capture comportamento atual conforme `testing-strategy.md`.

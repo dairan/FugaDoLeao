@@ -7,6 +7,7 @@ related:
   - architecture.md
   - publishing-plan.md
   - roadmap.md
+  - testing-strategy.md
 tags:
   - docs
   - refactor
@@ -24,7 +25,7 @@ Levar o prototipo para uma base simples, jogavel e publicavel, usando praticas c
 - Atualize os checkboxes no mesmo commit da mudanca.
 - Marque `[x]` apenas quando a mudanca estiver implementada e validada.
 - Mantenha uma fase pequena por vez.
-- Antes de pegar novo trabalho, leia esta ordem: `refactor-plan.md`, `publishing-plan.md`, `public-release-checklist.md`, `runbook.md`.
+- Antes de pegar novo trabalho, leia esta ordem: `refactor-plan.md`, `testing-strategy.md`, `publishing-plan.md`, `public-release-checklist.md`, `runbook.md`.
 - Proximo foco recomendado: `Fase 6 - Export Baseline`, item "Criar preset Web".
 
 ## Principios
@@ -38,7 +39,25 @@ Levar o prototipo para uma base simples, jogavel e publicavel, usando praticas c
 - [x] Object pool para entidades recorrentes.
 - [ ] Valores de balanceamento devem ser faceis de ajustar.
 - [ ] Contratos semanticos no codigo devem ser curtos, verificaveis e perto da dependencia real.
+- [ ] Scripts criticos devem ter characterization tests antes de refactors maiores.
 - [x] Cada refactor deve preservar o jogo rodando.
+
+## Fase 0 - Test Safety Baseline
+
+Objetivo: criar protecao minima para IA refatorar sem mudar comportamento sem perceber.
+
+- [ ] Instalar/configurar GUT 9.x para Godot 4.6.
+- [ ] Adicionar comando de teste local no runbook.
+- [ ] Rodar testes no GitHub Actions.
+- [ ] Criar characterization tests de `GameState`.
+- [ ] Criar component tests de `tax_item.gd`.
+- [ ] Documentar regra anti-gaming: assertions nao mudam no mesmo commit da implementacao.
+
+Critério de pronto:
+
+- [ ] CI roda importacao, smoke scenes e testes GUT.
+- [ ] `GameState` tem cobertura dos efeitos de item bom, item ruim, risco e game over.
+- [ ] `TaxItem` tem cobertura de ativacao/desativacao da pool.
 
 ## Fase 1 - Base de Gameplay
 
@@ -136,13 +155,14 @@ Critério de pronto:
 
 ## Ordem Recomendada de Trabalho
 
-1. [ ] Web export baseline.
-2. [ ] Swipe/touch.
-3. [ ] HUD responsivo.
-4. [ ] Spawn justo.
-5. [ ] Feedback visual.
-6. [ ] Android debug.
-7. [ ] iOS export/Xcode.
+1. [ ] Test safety baseline.
+2. [ ] Web export baseline.
+3. [ ] Swipe/touch.
+4. [ ] HUD responsivo.
+5. [ ] Spawn justo.
+6. [ ] Feedback visual.
+7. [ ] Android debug.
+8. [ ] iOS export/Xcode.
 
 ## Fora de Escopo Agora
 
