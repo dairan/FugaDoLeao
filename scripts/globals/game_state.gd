@@ -43,7 +43,7 @@ func apply_good_tax_pickup() -> void:
 
 	combo_count += 1
 	combo_timer = COMBO_WINDOW_SECONDS
-	combo_multiplier = minf(3.0, 1.0 + float(combo_count) * 0.15)
+	combo_multiplier = minf(3.0, 1.0 + float(combo_count - 1) * 0.15)
 
 	var score_gain: int = int(round(10.0 * combo_multiplier))
 	score += score_gain
