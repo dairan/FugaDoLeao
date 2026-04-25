@@ -95,16 +95,16 @@ Critério de pronto:
 
 Objetivo: fazer a UI caber em desktop, web e mobile.
 
-- [ ] Revisar `HUD.tscn` para ancoragem responsiva.
-- [ ] Garantir legibilidade em telas estreitas.
+- [x] Revisar `HUD.tscn` para ancoragem responsiva.
+- [x] Garantir legibilidade em telas estreitas.
 - [ ] Destacar risco fiscal e combo sem poluir a tela.
 - [ ] Preparar safe area para iOS.
 
 Critério de pronto:
 
-- [ ] HUD nao corta em 16:9.
-- [ ] HUD nao corta em telas altas de celular.
-- [ ] Game over fica legivel.
+- [x] HUD nao corta em 16:9.
+- [x] HUD nao corta em telas altas de celular.
+- [x] Game over fica legivel.
 
 ## Fase 4 - Spawn e Dificuldade
 
