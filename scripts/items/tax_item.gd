@@ -26,7 +26,7 @@ func _on_body_entered(body: Node) -> void:
 		return
 
 	_apply_collection_effect()
-	deactivate()
+	call_deferred("deactivate")
 
 func set_item_label_text(value: String) -> void:
 	if item_label != null:
@@ -43,7 +43,7 @@ func reset_state(start_pos: Vector2) -> void:
 func deactivate() -> void:
 	hide()
 	set_physics_process(false)
-	set_deferred("monitoring", false)
+	monitoring = false
 	is_active = false
 	position.x = -9999
 

@@ -56,7 +56,6 @@ func test_deactivate_disables_monitoring() -> void:
 	add_child_autofree(item)
 	item.reset_state(Vector2(100.0, 100.0))
 	item.deactivate()
-	await get_tree().process_frame
 	assert_false(item.monitoring)
 
 # --- collision ---
