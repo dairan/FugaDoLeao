@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  godot:
+    name: Godot headless validation
+    runs-on: ubuntu-24.04
+    env:
+      GODOT_VERSION: "4.6.2"
+      GODOT_STATUS: stable
+      GODOT_ZIP: Godot_v4.6.2-stable_mono_linux_x86_64.zip
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Install Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends unzip ca-certificates
+
+      - name: Download Godot
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/godot"
+          curl -L \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-${GODOT_STATUS}/${GODOT_ZIP}" \
+            -o "$RUNNER_TEMP/${GODOT_ZIP}"
+          unzip -q "$RUNNER_TEMP/${GODOT_ZIP}" -d "$RUNNER_TEMP/godot"
+          GODOT_BIN="$(find "$RUNNER_TEMP/godot" -type f -name 'Godot*_mono_linux*' | head -n 1)"
+          if [ -z "$GODOT_BIN" ]; then
+            echo "Godot binary not found"
+            find "$RUNNER_TEMP/godot" -maxdepth 3 -type f
+            exit 1
+          fi
+          chmod +x "$GODOT_BIN"
+          echo "GODOT_BIN=$GODOT_BIN" >> "$GITHUB_ENV"
+
+      - name: Print Godot version
+        run: '"$GODOT_BIN" --version'
+
+      - name: Import project
+        run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --import'
+
+      - name: Validate menu scene
+        run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --scene res://scenes/menu/MainMenu.tscn --quit-after 5'
+
+      - name: Validate main scene
+        run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --scene res://scenes/main/Main.tscn --quit-after 30'

@@ -65,6 +65,7 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 - [x] Nao commitar tokens de deploy.
 - [x] Build exportado deve ir para `build/`, `dist/`, `exports/` ou pasta ignorada.
 - [ ] Se usar CI, configurar tokens como secrets do provedor.
+- [x] CI inicial nao usa tokens.
 
 ## Obsidian
 

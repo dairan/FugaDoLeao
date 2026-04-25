@@ -44,3 +44,18 @@
 3. Rode `Main.tscn` em headless.
 4. Revise `git status --short`.
 5. Separe mudancas de docs, gameplay e arte em commits pequenos quando fizer sentido.
+
+## CI
+
+O GitHub Actions roda a validacao headless em `.github/workflows/ci.yml`:
+
+- baixa Godot Mono 4.6.2 para Linux;
+- roda importacao do projeto;
+- carrega `MainMenu.tscn`;
+- carrega `Main.tscn`.
+
+Antes de alterar o workflow, valide localmente com `actionlint` quando disponivel:
+
+```bash
+actionlint .github/workflows/ci.yml
+```
