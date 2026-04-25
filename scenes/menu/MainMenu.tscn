@@ -1,15 +1,15 @@
-[gd_scene format=3 uid="uid://buxd2wjv7g3tf"]
+[gd_scene load_steps=2 format=3 uid="uid://buxd2wjv7g3tf"]
 
-[ext_resource type="Script" uid="uid://cbmqfafu0b0ka" path="res://scripts/menu/main_menu.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/menu/main_menu.gd" id="1"]
 
 [node name="MainMenu" type="Control" unique_id=1927973338]
+script = ExtResource("1")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1951774655]
 layout_mode = 1
