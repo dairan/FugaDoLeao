@@ -57,10 +57,10 @@ jobs:
 
       - name: Install butler
         run: |
-          curl -L "https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default" -o butler.zip
+          curl -L "https://github.com/itchio/butler/releases/download/v15.26.1/butler-linux-amd64.zip" \
+            -o butler.zip
           unzip -q butler.zip
           chmod +x butler
-          echo "$GITHUB_WORKSPACE" >> "$GITHUB_PATH"
 
       - name: Deploy to itch.io
         env:
