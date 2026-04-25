@@ -37,8 +37,8 @@ Levar o prototipo para uma base simples, jogavel e publicavel, usando praticas c
 - [x] Signals para eventos.
 - [x] Groups para papeis, como `player`.
 - [x] Object pool para entidades recorrentes.
-- [ ] Valores de balanceamento devem ser faceis de ajustar.
-- [ ] Contratos semanticos no codigo devem ser curtos, verificaveis e perto da dependencia real.
+- [x] Valores de balanceamento devem ser faceis de ajustar.
+- [x] Contratos semanticos no codigo devem ser curtos, verificaveis e perto da dependencia real.
 - [ ] Scripts criticos devem ter characterization tests antes de refactors maiores.
 - [x] Cada refactor deve preservar o jogo rodando.
 
