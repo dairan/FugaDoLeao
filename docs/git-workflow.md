@@ -1,3 +1,17 @@
+---
+doc_type: workflow
+status: active
+canonical: true
+last_reviewed: 2026-04-25
+related:
+  - runbook.md
+  - public-release-checklist.md
+tags:
+  - docs
+  - git
+  - workflow
+---
+
 # Git Workflow
 
 ## Modelo

@@ -1,3 +1,18 @@
+---
+doc_type: checklist
+status: active
+canonical: true
+last_reviewed: 2026-04-25
+related:
+  - publishing-plan.md
+  - git-workflow.md
+  - runbook.md
+tags:
+  - docs
+  - security
+  - release
+---
+
 # Public Release Checklist
 
 ## Objetivo

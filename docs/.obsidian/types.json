@@ -1,0 +1,8 @@
+{
+  "doc_type": "text",
+  "status": "text",
+  "canonical": "checkbox",
+  "last_reviewed": "date",
+  "related": "multitext",
+  "tags": "tags"
+}

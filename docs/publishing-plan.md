@@ -1,3 +1,18 @@
+---
+doc_type: plan
+status: active
+canonical: true
+last_reviewed: 2026-04-25
+related:
+  - refactor-plan.md
+  - public-release-checklist.md
+  - runbook.md
+tags:
+  - docs
+  - publishing
+  - release
+---
+
 # Publishing Plan
 
 ## Prioridade

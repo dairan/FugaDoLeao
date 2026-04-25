@@ -1,3 +1,17 @@
+---
+doc_type: roadmap
+status: active
+canonical: true
+last_reviewed: 2026-04-25
+related:
+  - refactor-plan.md
+  - publishing-plan.md
+  - public-release-checklist.md
+tags:
+  - docs
+  - roadmap
+---
+
 # Roadmap
 
 ## Objetivo Atual

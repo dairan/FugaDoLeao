@@ -1,3 +1,18 @@
+---
+doc_type: runbook
+status: active
+canonical: true
+last_reviewed: 2026-04-25
+related:
+  - git-workflow.md
+  - public-release-checklist.md
+  - publishing-plan.md
+tags:
+  - docs
+  - runbook
+  - ci
+---
+
 # Runbook
 
 ## Abrir no Editor

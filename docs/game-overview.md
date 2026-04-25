@@ -1,3 +1,18 @@
+---
+doc_type: overview
+status: active
+canonical: true
+last_reviewed: 2026-04-25
+related:
+  - architecture.md
+  - roadmap.md
+  - publishing-plan.md
+tags:
+  - docs
+  - design
+  - gameplay
+---
+
 # Foge Leao - Visao do Jogo
 
 ## Conceito

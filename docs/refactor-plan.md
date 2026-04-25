@@ -1,3 +1,18 @@
+---
+doc_type: plan
+status: active
+canonical: true
+last_reviewed: 2026-04-25
+related:
+  - architecture.md
+  - publishing-plan.md
+  - roadmap.md
+tags:
+  - docs
+  - refactor
+  - gameplay
+---
+
 # Refactor Plan
 
 ## Objetivo
@@ -22,6 +37,7 @@ Levar o prototipo para uma base simples, jogavel e publicavel, usando praticas c
 - [x] Groups para papeis, como `player`.
 - [x] Object pool para entidades recorrentes.
 - [ ] Valores de balanceamento devem ser faceis de ajustar.
+- [ ] Contratos semanticos no codigo devem ser curtos, verificaveis e perto da dependencia real.
 - [x] Cada refactor deve preservar o jogo rodando.
 
 ## Fase 1 - Base de Gameplay
@@ -32,6 +48,7 @@ Objetivo: reduzir duplicacao e tornar o loop mais facil de ajustar.
 - [ ] Revisar se `GoodItem` e `BadItem` precisam continuar como scripts separados ou se podem virar cenas configuradas.
 - [ ] Extrair configuracoes de spawn para exports claros.
 - [ ] Documentar constantes de balanceamento em `GameState`.
+- [ ] Adicionar comentarios de contrato apenas onde houver dependencia por group, signal, node path ou pool.
 - [ ] Evitar que `Main` cresca alem de orquestracao de fase.
 
 Critério de pronto:

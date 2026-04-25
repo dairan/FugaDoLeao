@@ -1,3 +1,18 @@
+---
+doc_type: architecture
+status: active
+canonical: true
+last_reviewed: 2026-04-25
+related:
+  - game-overview.md
+  - refactor-plan.md
+  - runbook.md
+tags:
+  - docs
+  - architecture
+  - godot
+---
+
 # Arquitetura
 
 ## Stack
@@ -70,6 +85,32 @@ O HUD roda como leitor do estado global. Ele atualiza labels de pontuacao, veloc
 - Itens devem ter a propriedade `is_active`.
 - `Main` espera encontrar `SpawnTimer`, sprites de parallax e players de audio pelos caminhos definidos na cena.
 - `Lion` tenta localizar o jogador pelo group `player`.
+
+## Documentacao Semantica no Codigo
+
+Use documentacao semantica apenas onde ela reduz ambiguidade de contrato. A fonte de verdade deve continuar sendo codigo simples, nomes claros, exports, signals, groups e cenas validaveis em headless.
+
+Padrao recomendado:
+
+- [ ] `class_name` somente quando o script for uma API reutilizavel no projeto.
+- [ ] `signal` com nome de evento no passado ou como fato de dominio, por exemplo `game_over_triggered`.
+- [ ] `@export` para valores de balanceamento que designers ou futuras IAs podem ajustar sem procurar constantes internas.
+- [ ] Comentario curto acima de invariantes, limites ou formulas que nao sao obvias pelo nome.
+- [ ] Comentario de contrato quando uma cena depende de node path, group ou signal externo.
+- [ ] Nada de bloco grande narrando codigo linha a linha.
+
+Exemplo de comentario util:
+
+```gdscript
+# Contract: pooled items must be hidden and stop monitoring when inactive.
+func deactivate() -> void:
+```
+
+Exemplo de comentario que tende a gerar drift:
+
+```gdscript
+# This function moves the item to the left every frame.
+```
 
 ## Regras de Evolucao
 
