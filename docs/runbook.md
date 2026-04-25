@@ -64,7 +64,13 @@ cp -r /tmp/gut_extracted/addons/gut /Users/dairan/Public/Dev/Games/FugaDoLeao/ad
 /Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path /Users/dairan/Public/Dev/Games/FugaDoLeao -s res://addons/gut/gut_cmdln.gd -- -gdir=res://tests -gexit -glog=1
 ```
 
-## Exportar para Web
+## Exportar e Testar Web (atalho)
+
+```bash
+bash scripts/dev/export_web.sh
+```
+
+## Exportar para Web (manual)
 
 Web export requer o build padrao do Godot (sem Mono), mesmo que o projeto
 seja GDScript puro. Use `/Applications/Godot.app`, nao `Godot_mono.app`.
