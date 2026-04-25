@@ -4,13 +4,13 @@ signal good_item_collected
 signal bad_item_collected
 signal game_over_triggered
 
-const BASE_SPEED: float = 320.0
-const START_DISTANCE: float = 220.0
-const MAX_DISTANCE: float = 9999.0
-const PASSIVE_DISTANCE_DRAIN: float = 14.0
-const GOOD_DISTANCE_BONUS_BASE: float = 36.0
-const BAD_DISTANCE_PENALTY: float = 46.0
-const COMBO_WINDOW_SECONDS: float = 2.2
+const BASE_SPEED: float = 320.0              # px/s de movimento dos itens
+const START_DISTANCE: float = 220.0          # distancia inicial leao-jogador (px)
+const MAX_DISTANCE: float = 9999.0           # teto para clampf; sem limite pratico
+const PASSIVE_DISTANCE_DRAIN: float = 14.0   # px/s que o leao avanca passivamente
+const GOOD_DISTANCE_BONUS_BASE: float = 36.0 # bonus de distancia base por item bom
+const BAD_DISTANCE_PENALTY: float = 46.0     # penalidade de distancia por item ruim
+const COMBO_WINDOW_SECONDS: float = 2.2      # janela em segundos para manter combo
 
 var score: int = 0
 var speed: float = BASE_SPEED

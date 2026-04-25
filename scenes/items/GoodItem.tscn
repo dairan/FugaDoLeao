@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://scripts/items/good_item.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/items/tax_item.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/art/item_good_tax.svg" id="2"]
 
 [sub_resource type="CircleShape2D" id="1"]

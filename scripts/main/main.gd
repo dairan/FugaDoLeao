@@ -13,6 +13,10 @@ const BG_WIDTH: float = 1280.0
 @export var difficulty_step_seconds: float = 12.0
 @export var far_parallax_speed: float = 16.0
 @export var near_parallax_speed: float = 32.0
+@export var bad_spawn_probability_base: float = 0.45
+@export var bad_spawn_probability_max: float = 0.65
+@export var bad_spawn_probability_step: float = 0.03
+@export var difficulty_interval_reduction: float = 0.06
 
 const GOOD_ITEM_NAMES: Array[String] = ["dinheiro", "DARF", "regularização", "nota em dia"]
 const BAD_ITEM_NAMES: Array[String] = ["caixa dois", "offshore suspeita", "recibo frio", "malha fina"]
@@ -87,7 +91,7 @@ func _on_spawn_timer_timeout() -> void:
 		return
 
 	var lane_index: int = randi_range(0, lane_positions.size() - 1)
-	var bad_spawn_probability: float = minf(0.65, 0.45 + float(difficulty_level) * 0.03)
+	var bad_spawn_probability: float = minf(bad_spawn_probability_max, bad_spawn_probability_base + float(difficulty_level) * bad_spawn_probability_step)
 	var spawn_good: bool = randf() > bad_spawn_probability
 	
 	var item: Node2D = _get_item_from_pool(_good_pool if spawn_good else _bad_pool)
@@ -116,7 +120,7 @@ func _update_difficulty() -> void:
 	difficulty_level = target_level
 	spawn_timer.wait_time = maxf(
 		minimum_spawn_interval,
-		initial_spawn_interval - float(difficulty_level) * 0.06
+		initial_spawn_interval - float(difficulty_level) * difficulty_interval_reduction
 	)
 
 func _update_parallax(delta: float) -> void:

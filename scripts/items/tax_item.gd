@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 	if position.x < -180:
 		deactivate()
 
+# Contract: body must be in group "player" to trigger collection effect.
 func _on_body_entered(body: Node) -> void:
 	if not is_active or GameState.is_game_over or GameState.is_paused:
 		return
@@ -38,6 +39,7 @@ func reset_state(start_pos: Vector2) -> void:
 	monitoring = true
 	is_active = true
 
+# Contract: pooled items must be hidden and have monitoring disabled when inactive.
 func deactivate() -> void:
 	hide()
 	set_physics_process(false)

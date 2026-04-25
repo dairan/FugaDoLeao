@@ -16,6 +16,7 @@ var player: Node2D
 var frame_timer: float = 0.0
 var frame_index: int = 0
 
+# Contract: player node must be in group "player".
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Node2D
 	body_visual.texture = LION_FRAMES[0]
