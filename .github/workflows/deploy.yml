@@ -5,13 +5,14 @@ on:
     workflows: [CI]
     types: [completed]
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-24.04
     env:
       GODOT_VERSION: "4.6.2"
@@ -54,29 +55,14 @@ jobs:
           mkdir -p build/web
           "$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --export-release "Web" build/web/index.html
 
-      - name: Compress WASM
-        run: gzip -9 build/web/index.wasm
-
-      - name: Add headers and redirects
+      - name: Install butler
         run: |
-          cat > build/web/_headers << 'EOF'
-          /*
-            Cross-Origin-Opener-Policy: same-origin
-            Cross-Origin-Embedder-Policy: require-corp
-            Cross-Origin-Resource-Policy: cross-origin
+          curl -L "https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default" -o butler.zip
+          unzip -q butler.zip
+          chmod +x butler
+          echo "$GITHUB_WORKSPACE" >> "$GITHUB_PATH"
 
-          /index.wasm
-            Content-Type: application/wasm
-            Content-Encoding: gzip
-          EOF
-
-          cat > build/web/_redirects << 'EOF'
-          /index.wasm /index.wasm.gz 200
-          EOF
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy build/web --project-name=fugadoleao --commit-dirty=true
+      - name: Deploy to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: ./butler push build/web dairantf/fuga-do-leao:web
