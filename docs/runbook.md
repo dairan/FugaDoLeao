@@ -66,9 +66,12 @@ cp -r /tmp/gut_extracted/addons/gut /Users/dairan/Public/Dev/Games/FugaDoLeao/ad
 
 ## Exportar para Web
 
+Web export requer o build padrao do Godot (sem Mono), mesmo que o projeto
+seja GDScript puro. Use `/Applications/Godot.app`, nao `Godot_mono.app`.
+
 ```bash
 mkdir -p /Users/dairan/Public/Dev/Games/FugaDoLeao/build/web
-/Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path /Users/dairan/Public/Dev/Games/FugaDoLeao --export-release "Web" build/web/index.html
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path /Users/dairan/Public/Dev/Games/FugaDoLeao --export-release "Web" build/web/index.html
 ```
 
 Para validar no navegador (requer servidor HTTP por causa de SharedArrayBuffer):
