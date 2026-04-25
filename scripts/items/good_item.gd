@@ -38,4 +38,3 @@ func deactivate() -> void:
 	monitoring = false
 	is_active = false
 	position.x = -9999
-

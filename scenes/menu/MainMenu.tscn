@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://buxd2wjv7g3tf"]
 
-[ext_resource type="Script" path="res://scripts/menu/main_menu.gd" id="1"]
+[ext_resource type="Script" uid="uid://cbmqfafu0b0ka" path="res://scripts/menu/main_menu.gd" id="1"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1927973338]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1951774655]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0862745, 0.160784, 0.258824, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=573943316]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,32 +28,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=172700455]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 14
 
-[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1664502745]
 layout_mode = 2
 text = "FOGE LEAO"
 horizontal_alignment = 1
 
-[node name="Subtitle" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Subtitle" type="Label" parent="CenterContainer/VBoxContainer" unique_id=820464819]
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 text = "Pague imposto, fuja da malha e nao deixe o leao te pegar."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Hint" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Hint" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1130792921]
 layout_mode = 2
 text = "W/Seta cima e S/Seta baixo para trocar de faixa"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=483930998]
 layout_mode = 2
 text = "Iniciar partida"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=670905294]
 layout_mode = 2
 text = "Sair"
