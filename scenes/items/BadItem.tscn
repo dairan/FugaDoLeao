@@ -1,22 +1,20 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://uca3ijdttyj2"]
 
-[ext_resource type="Script" path="res://scripts/items/tax_item.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/art/item_bad_tax.svg" id="2"]
+[ext_resource type="Script" uid="uid://dcx8vc4fwjn51" path="res://scripts/items/tax_item.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bn0pnq1d0mlce" path="res://assets/art/item_bad_tax.svg" id="2"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 22.0
 
-[node name="BadItem" type="Area2D"]
+[node name="BadItem" type="Area2D" unique_id=508778932]
 script = ExtResource("1")
 item_kind = 1
-monitoring = true
-monitorable = true
 
-[node name="Visual" type="Sprite2D" parent="."]
-texture = ExtResource("2")
+[node name="Visual" type="Sprite2D" parent="." unique_id=918827894]
 scale = Vector2(0.8, 0.8)
+texture = ExtResource("2")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1030237025]
 offset_left = -85.0
 offset_top = 38.0
 offset_right = 85.0
@@ -24,7 +22,7 @@ offset_bottom = 66.0
 text = "caixa dois"
 horizontal_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=544158375]
 shape = SubResource("1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
