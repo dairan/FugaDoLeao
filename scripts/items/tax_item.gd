@@ -43,7 +43,7 @@ func reset_state(start_pos: Vector2) -> void:
 func deactivate() -> void:
 	hide()
 	set_physics_process(false)
-	monitoring = false
+	set_deferred("monitoring", false)
 	is_active = false
 	position.x = -9999
 
