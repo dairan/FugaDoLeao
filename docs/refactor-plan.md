@@ -97,8 +97,8 @@ Objetivo: fazer a UI caber em desktop, web e mobile.
 
 - [x] Revisar `HUD.tscn` para ancoragem responsiva.
 - [x] Garantir legibilidade em telas estreitas.
-- [ ] Destacar risco fiscal e combo sem poluir a tela.
-- [ ] Preparar safe area para iOS.
+- [x] Destacar risco fiscal e combo sem poluir a tela.
+- [x] Preparar safe area para iOS.
 
 Critério de pronto:
 
