@@ -6,6 +6,9 @@ Thumbs.db
 .godot/
 .vscode/
 
+# GUT addon — baixado pelo CI e instalado localmente via editor, nao versionado
+addons/gut/
+
 # Build/export artifacts
 build/
 dist/

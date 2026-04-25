@@ -29,6 +29,7 @@ jobs:
       GODOT_VERSION: "4.6.2"
       GODOT_STATUS: stable
       GODOT_ZIP: Godot_v4.6.2-stable_mono_linux_x86_64.zip
+      GUT_VERSION: "9.3.0"
 
     steps:
       - name: Checkout
@@ -66,6 +67,25 @@ jobs:
 
       - name: Import project
         run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --import'
+
+      - name: Download GUT addon
+        run: |
+          set -euo pipefail
+          curl -L \
+            "https://github.com/bitwes/Gut/releases/download/v${GUT_VERSION}/gut_v${GUT_VERSION}.zip" \
+            -o "$RUNNER_TEMP/gut.zip"
+          unzip -q "$RUNNER_TEMP/gut.zip" -d "$RUNNER_TEMP/gut_extracted"
+          GUT_DIR="$(find "$RUNNER_TEMP/gut_extracted" -type d -name "gut" | head -n 1)"
+          if [ -z "$GUT_DIR" ]; then
+            echo "GUT addon directory not found in zip"
+            find "$RUNNER_TEMP/gut_extracted" -maxdepth 4 -type f
+            exit 1
+          fi
+          mkdir -p "$GITHUB_WORKSPACE/addons"
+          cp -r "$GUT_DIR" "$GITHUB_WORKSPACE/addons/gut"
+
+      - name: Run unit tests
+        run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" -s res://addons/gut/gut_cmdln.gd -- -gdir=res://tests -gexit -glog=1'
 
       - name: Validate menu scene
         run: '"$GODOT_BIN" --headless --path "$GITHUB_WORKSPACE" --scene res://scenes/menu/MainMenu.tscn --quit-after 5'

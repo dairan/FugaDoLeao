@@ -46,20 +46,22 @@ tags:
 /Applications/Godot_mono.app/Contents/MacOS/Godot --path /Users/dairan/Public/Dev/Games/FugaDoLeao
 ```
 
-## Rodar Testes
+## Instalar GUT Localmente
 
-Ainda nao ha runner de unit tests instalado. O plano aprovado em `testing-strategy.md` e instalar GUT 9.x e adicionar o comando CLI aqui.
-
-Enquanto isso, a validacao minima obrigatoria e:
-
-1. Importacao headless.
-2. `MainMenu.tscn` em headless.
-3. `Main.tscn` em headless.
-
-Quando GUT entrar no projeto, este runbook deve incluir:
+GUT nao e versionado no repo. Instale via Godot Asset Library no editor (busque "GUT") ou baixe manualmente:
 
 ```bash
-/Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path /Users/dairan/Public/Dev/Games/FugaDoLeao -s res://addons/gut/gut_cmdln.gd
+GUT_VERSION="9.3.0"
+curl -L "https://github.com/bitwes/Gut/releases/download/v${GUT_VERSION}/gut_v${GUT_VERSION}.zip" -o /tmp/gut.zip
+unzip -q /tmp/gut.zip -d /tmp/gut_extracted
+mkdir -p /Users/dairan/Public/Dev/Games/FugaDoLeao/addons
+cp -r /tmp/gut_extracted/addons/gut /Users/dairan/Public/Dev/Games/FugaDoLeao/addons/gut
+```
+
+## Rodar Testes
+
+```bash
+/Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path /Users/dairan/Public/Dev/Games/FugaDoLeao -s res://addons/gut/gut_cmdln.gd -- -gdir=res://tests -gexit -glog=1
 ```
 
 ## Observacoes

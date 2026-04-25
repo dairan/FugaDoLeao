@@ -24,9 +24,9 @@ Criar uma rede pequena de seguranca para refatoracao assistida por IA, sem trans
 Usar uma piramide simples:
 
 - [x] Smoke tests headless para cenas principais no CI.
-- [ ] Unit tests em GDScript para regras centrais.
-- [ ] Characterization tests antes de refactors em scripts criticos.
-- [ ] Scene/component tests para contratos de item, player e leao.
+- [x] Unit tests em GDScript para regras centrais.
+- [x] Characterization tests antes de refactors em scripts criticos.
+- [x] Scene/component tests para contratos de item, player e leao.
 - [ ] E2E completo apenas depois que input mobile e HUD estiverem estaveis.
 
 Ferramenta inicial recomendada: GUT 9.x para Godot 4.6. `gdUnit4` continua sendo alternativa se o projeto precisar de scene testing mais completo, mocking mais forte ou relatorios JUnit mais ricos.
@@ -54,9 +54,9 @@ Ferramenta inicial recomendada: GUT 9.x para Godot 4.6. `gdUnit4` continua sendo
 
 ## Guardrails para IA
 
-- [ ] Antes de refatorar `GameState`, `Main`, `Player`, `Lion` ou `TaxItem`, criar ou atualizar characterization tests em commit separado.
-- [ ] Assertions de teste nao devem mudar no mesmo commit da implementacao.
-- [ ] Mudancas de teste, gameplay, arte, balanceamento e CI devem ficar em commits separados quando possivel.
+- [x] Antes de refatorar `GameState`, `Main`, `Player`, `Lion` ou `TaxItem`, criar ou atualizar characterization tests em commit separado.
+- [x] Assertions de teste nao devem mudar no mesmo commit da implementacao.
+- [x] Mudancas de teste, gameplay, arte, balanceamento e CI devem ficar em commits separados quando possivel.
 - [ ] Diff simples que mexe em mais de 10 arquivos precisa de justificativa no resumo do commit ou PR.
 - [ ] Toda task deve terminar com `git status --short` e validacao descrita no runbook.
 

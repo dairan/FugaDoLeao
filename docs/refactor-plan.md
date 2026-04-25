@@ -46,18 +46,18 @@ Levar o prototipo para uma base simples, jogavel e publicavel, usando praticas c
 
 Objetivo: criar protecao minima para IA refatorar sem mudar comportamento sem perceber.
 
-- [ ] Instalar/configurar GUT 9.x para Godot 4.6.
-- [ ] Adicionar comando de teste local no runbook.
-- [ ] Rodar testes no GitHub Actions.
-- [ ] Criar characterization tests de `GameState`.
-- [ ] Criar component tests de `tax_item.gd`.
-- [ ] Documentar regra anti-gaming: assertions nao mudam no mesmo commit da implementacao.
+- [x] Instalar/configurar GUT 9.x para Godot 4.6.
+- [x] Adicionar comando de teste local no runbook.
+- [x] Rodar testes no GitHub Actions.
+- [x] Criar characterization tests de `GameState`.
+- [x] Criar component tests de `tax_item.gd`.
+- [x] Documentar regra anti-gaming: assertions nao mudam no mesmo commit da implementacao.
 
 Critério de pronto:
 
-- [ ] CI roda importacao, smoke scenes e testes GUT.
-- [ ] `GameState` tem cobertura dos efeitos de item bom, item ruim, risco e game over.
-- [ ] `TaxItem` tem cobertura de ativacao/desativacao da pool.
+- [x] CI roda importacao, smoke scenes e testes GUT.
+- [x] `GameState` tem cobertura dos efeitos de item bom, item ruim, risco e game over.
+- [x] `TaxItem` tem cobertura de ativacao/desativacao da pool.
 
 ## Fase 1 - Base de Gameplay
 
