@@ -126,16 +126,16 @@ Critério de pronto:
 
 Objetivo: comunicar bem o que aconteceu.
 
-- [ ] Feedback visual para item bom.
-- [ ] Feedback visual para item ruim.
-- [ ] Feedback de perigo quando o leao se aproxima.
-- [ ] Pequeno feedback de combo.
+- [x] Feedback visual para item bom.
+- [x] Feedback visual para item ruim.
+- [x] Feedback de perigo quando o leao se aproxima.
+- [x] Pequeno feedback de combo.
 - [x] Revisar audio de coleta e game over.
 
 Critério de pronto:
 
-- [ ] Coleta boa e ruim sao distinguiveis sem olhar so para score.
-- [ ] Perigo do leao e claro antes do game over.
+- [x] Coleta boa e ruim sao distinguiveis sem olhar so para score.
+- [x] Perigo do leao e claro antes do game over.
 
 ## Fase 6 - Export Baseline
 
