@@ -19,15 +19,25 @@ const BG_WIDTH: float = 1280.0
 
 # --- Catálogo de itens: adicione ou edite entradas aqui ---
 const GOOD_ITEMS: Array[Dictionary] = [
-	{label = "dinheiro",      texture = preload("res://assets/art/item_good_tax.svg")},
-	{label = "DARF",          texture = preload("res://assets/art/item_good_tax.svg")},
-	{label = "regularização", texture = preload("res://assets/art/item_good_tax.svg")},
-	{label = "nota em dia",   texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "dinheiro",          texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "DARF quitado",      texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "regularização",     texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "nota em dia",       texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "reembolso IR",      texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "certidão negativa", texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "CPF limpo",         texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "MEI em dia",        texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "dedução legal",     texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "parcelamento ok",   texture = preload("res://assets/art/item_good_tax.svg")},
 ]
 
 const BAD_ITEMS: Array[Dictionary] = [
-	{label = "maleta suspeita",  texture = preload("res://assets/art/item_bad_tax.png")},
-	{label = "imposto surpresa", texture = preload("res://assets/art/item_bad_surprise_tax.png")},
+	{label = "maleta suspeita",     texture = preload("res://assets/art/item_bad_tax.png")},
+	{label = "imposto surpresa",    texture = preload("res://assets/art/item_bad_surprise_tax.png")},
+	{label = "auditoria",           texture = preload("res://assets/art/item_bad_tax.png")},
+	{label = "multa fiscal",        texture = preload("res://assets/art/item_bad_surprise_tax.png")},
+	{label = "sonegação detectada", texture = preload("res://assets/art/item_bad_tax.png")},
+	{label = "débito vencido",      texture = preload("res://assets/art/item_bad_surprise_tax.png")},
 ]
 # ----------------------------------------------------------
 

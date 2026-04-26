@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0862745, 0.160784, 0.258824, 1)
+color = Color(0.0627451, 0.109804, 0.180392, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=573943316]
 layout_mode = 1
@@ -32,29 +32,56 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 14
+theme_override_constants/separation = 20
+custom_minimum_size = Vector2(480, 0)
 
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1664502745]
 layout_mode = 2
-text = "FOGE LEAO"
+text = "Fuga do Leao"
 horizontal_alignment = 1
+theme_override_font_sizes/font_size = 56
+theme_override_colors/font_color = Color(1.0, 0.82, 0.1, 1)
+
+[node name="Tagline" type="Label" parent="CenterContainer/VBoxContainer" unique_id=391820033]
+layout_mode = 2
+text = "Fiscal Runner"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.6, 0.75, 1.0, 1)
+
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer" unique_id=204830011]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 12)
 
 [node name="Subtitle" type="Label" parent="CenterContainer/VBoxContainer" unique_id=820464819]
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
-text = "Pague imposto, fuja da malha e nao deixe o leao te pegar."
+text = "Pague impostos, fuja da malha fina e nao deixe o leao te pegar."
 horizontal_alignment = 1
 autowrap_mode = 2
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.78, 0.82, 0.9, 1)
 
 [node name="Hint" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1130792921]
+custom_minimum_size = Vector2(480, 48)
 layout_mode = 2
-text = "W/Seta cima e S/Seta baixo para trocar de faixa"
+text = "W / seta cima  ou  swipe para cima para subir de faixa\nS / seta baixo  ou  swipe para baixo para descer"
 horizontal_alignment = 1
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.55, 0.65, 0.8, 1)
+
+[node name="Separator2" type="Control" parent="CenterContainer/VBoxContainer" unique_id=819203847]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 8)
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=483930998]
 layout_mode = 2
 text = "Iniciar partida"
+theme_override_font_sizes/font_size = 18
+custom_minimum_size = Vector2(0, 48)
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=670905294]
 layout_mode = 2
 text = "Sair"
+theme_override_font_sizes/font_size = 16

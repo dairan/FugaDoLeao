@@ -20,7 +20,21 @@ const COMBO_FONT_SIZE_ACTIVE: int = 22
 @onready var danger_vignette: ColorRect = $DangerVignette
 @onready var flash_overlay: ColorRect = $FlashOverlay
 
+const GAME_OVER_PHRASES: Array[String] = [
+	"O leão fiscal não perde ninguém.",
+	"A Receita Federal agradece.",
+	"Você foi pego pela malha fina.",
+	"Dívida demais, pernas de menos.",
+	"Fim da fuga. A auditoria foi inevitável.",
+	"Sem declaração, sem liberdade.",
+	"Você deveria ter pago o DARF.",
+	"O leão sempre alcança os devedores.",
+	"Próxima vez, declare tudo.",
+	"Risco fiscal Alto demais para sobreviver.",
+]
+
 var _flash_tween: Tween
+var _game_over_phrase: String = ""
 
 @onready var pause_button: Button = $MarginContainer/TopRightControls/PauseButton
 
@@ -50,7 +64,9 @@ func _process(_delta: float) -> void:
 	game_over_backdrop.visible = GameState.is_game_over
 	game_over_label.visible = GameState.is_game_over
 	if GameState.is_game_over:
-		game_over_label.text = "GAME OVER\nO leão te alcançou.\nPontuação final: %d\nAperte R para reiniciar." % GameState.score
+		if _game_over_phrase.is_empty():
+			_game_over_phrase = GAME_OVER_PHRASES[randi() % GAME_OVER_PHRASES.size()]
+		game_over_label.text = "GAME OVER\n%s\nPontuação final: %d\n[R] para reiniciar" % [_game_over_phrase, GameState.score]
 
 func _update_combo_color() -> void:
 	var active := GameState.combo_count > 0

@@ -57,11 +57,11 @@ Transformar o prototipo em uma experiencia curta, legivel e repetivel, mantendo 
 
 ## Fase 4 - Identidade
 
-- [ ] Expandir lista de itens fiscais bons e ruins.
-- [ ] Adicionar frases curtas de game over.
-- [ ] Melhorar menu inicial com identidade visual do jogo.
+- [x] Expandir lista de itens fiscais bons e ruins.
+- [x] Adicionar frases curtas de game over.
+- [x] Melhorar menu inicial com identidade visual do jogo.
 - [ ] Revisar assets SVG para leitura em mobile.
-- [ ] Atualizar hint de controles para mencionar swipe touch.
+- [x] Atualizar hint de controles para mencionar swipe touch.
 
 ## Fase 5 - Distribuicao
 
