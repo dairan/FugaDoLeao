@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 const RUN_FRAMES: Array[Texture2D] = [
-	preload("res://assets/art/player_runner.svg"),
-	preload("res://assets/art/player_runner_step.svg")
+	preload("res://assets/art/player_runner_0.png"),
+	preload("res://assets/art/player_runner_1.png"),
+	preload("res://assets/art/player_runner_2.png"),
+	preload("res://assets/art/player_runner_3.png"),
 ]
 const FRAME_INTERVAL_SECONDS: float = 0.10
 

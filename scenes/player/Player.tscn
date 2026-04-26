@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/art/player_runner.svg" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(44, 78)
@@ -11,7 +10,6 @@ script = ExtResource("1")
 position = Vector2(300, 380)
 
 [node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("2")
 position = Vector2(0, -8)
 scale = Vector2(0.95, 0.95)
 
