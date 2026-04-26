@@ -67,6 +67,7 @@ color = Color(0.36, 0.7, 0.28, 0.86)
 [node name="Player" parent="." instance=ExtResource("2")]
 
 [node name="Lion" parent="." instance=ExtResource("3")]
+position = Vector2(120, 380)
 
 [node name="ItemSpawner" type="Node2D" parent="."]
 
