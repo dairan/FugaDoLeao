@@ -24,7 +24,7 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 - Atualize os checkboxes no mesmo commit da verificacao.
 - Marque `[x]` apenas para verificacao executada, nao para intencao.
 - Antes de tornar o repositorio publico, todos os itens de `Checklist Antes de Tornar Publico` devem estar marcados.
-- Proximo foco recomendado: instalar/rodar `gitleaks` ou ferramenta equivalente.
+- Proximo foco recomendado: rotacionar chaves expostas e ativar Secret Scanning/Push Protection.
 
 ## Status Atual
 
@@ -32,6 +32,7 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 - [x] Rodar varredura especializada com `gitleaks`.
 - [x] `gitleaks` detect nao encontrou segredos no historico rastreado.
 - [x] `.gemini/`, `.wrangler/` e `docs/.obsidian/workspace.json` estao ignorados.
+- [x] `docs/.obsidian/workspace.json` foi removido do historico git.
 - [ ] Rotacionar a chave Gemini/Stitch que ja existiu em `.gemini/settings.json` local.
 
 ## Nunca Versionar
@@ -111,12 +112,13 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 1. [x] Rodar varredura com ferramenta especializada, como `gitleaks`.
 2. [x] Revisar `git ls-files`.
 3. [ ] Revisar historico para nomes sensiveis de arquivos.
-4. [x] Confirmar que `.gitignore` cobre signing, env e exports.
-5. [x] Confirmar que `export_presets.cfg`, se existir, esta sanitizado.
-6. [x] Confirmar que nao ha certificados ou keystores rastreados nos arquivos rastreados atuais.
-7. [ ] Confirmar que docs nao expõem informacao pessoal desnecessaria.
-8. [ ] Ativar Secret Scanning e Push Protection no GitHub.
-9. [ ] Criar README publico com status de prototipo e licenca.
+4. [x] Remover `docs/.obsidian/workspace.json` do historico (rewrite + force-push).
+5. [x] Confirmar que `.gitignore` cobre signing, env e exports.
+6. [x] Confirmar que `export_presets.cfg`, se existir, esta sanitizado.
+7. [x] Confirmar que nao ha certificados ou keystores rastreados nos arquivos rastreados atuais.
+8. [ ] Confirmar que docs nao expõem informacao pessoal desnecessaria.
+9. [ ] Ativar Secret Scanning e Push Protection no GitHub.
+10. [ ] Criar README publico com status de prototipo e licenca.
 
 ## Comandos Uteis
 

@@ -23,7 +23,7 @@ Transformar o prototipo em uma experiencia curta, legivel e repetivel, mantendo 
 - Use este arquivo como resumo executivo.
 - Use `refactor-plan.md` e `publishing-plan.md` para detalhes.
 - Atualize checkboxes aqui quando uma milestone for concluida nos planos detalhados.
-- Proximo foco recomendado: `Fase 4 - Identidade`.
+- Proximo foco recomendado: `Fase 4 - Identidade` (revisar SVGs para leitura em mobile) e `Fase 6 - Pre-Release`.
 
 ## Fase 0 - Export Baseline
 
@@ -75,7 +75,7 @@ Transformar o prototipo em uma experiencia curta, legivel e repetivel, mantendo 
 
 - [ ] README publico com status de prototipo e licenca.
 - [ ] Ativar Secret Scanning e Push Protection no GitHub.
-- [ ] Revisar `workspace.json` do Obsidian antes de tornar repo publico.
+- [x] Remover `docs/.obsidian/workspace.json` do historico e ignorar localmente.
 
 ## Nao Objetivos Agora
 
