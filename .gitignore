@@ -43,3 +43,8 @@ export/
 local.properties
 keystore.properties
 signing.properties
+
+# Local tool configuration and caches
+.gemini/
+.wrangler/
+docs/.obsidian/workspace.json
