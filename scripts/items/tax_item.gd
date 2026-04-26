@@ -4,10 +4,16 @@ enum ItemKind { GOOD, BAD }
 
 @export var item_kind: ItemKind = ItemKind.GOOD
 
+@onready var visual: Sprite2D = $Visual
 @onready var item_label: Label = $Label
 
 var is_active: bool = false
 var speed_multiplier: float = 1.0
+
+func setup(p_label: String, p_texture: Texture2D, p_kind: ItemKind) -> void:
+	item_kind = p_kind
+	item_label.text = p_label
+	visual.texture = p_texture
 
 func _physics_process(delta: float) -> void:
 	if not is_active or GameState.is_game_over or GameState.is_paused:
@@ -17,7 +23,6 @@ func _physics_process(delta: float) -> void:
 	if position.x < -180:
 		deactivate()
 
-# Contract: body must be in group "player" to trigger collection effect.
 func _on_body_entered(body: Node) -> void:
 	if not is_active or GameState.is_game_over or GameState.is_paused:
 		return
@@ -29,10 +34,6 @@ func _on_body_entered(body: Node) -> void:
 	_apply_collection_effect()
 	call_deferred("deactivate")
 
-func set_item_label_text(value: String) -> void:
-	if item_label != null:
-		item_label.text = value
-
 func reset_state(start_pos: Vector2) -> void:
 	position = start_pos
 	show()
@@ -40,7 +41,7 @@ func reset_state(start_pos: Vector2) -> void:
 	monitoring = true
 	is_active = true
 
-# Contract: pooled items must be hidden and have monitoring disabled when inactive.
+# Pooled items must be hidden and have monitoring disabled when inactive.
 func deactivate() -> void:
 	hide()
 	set_physics_process(false)

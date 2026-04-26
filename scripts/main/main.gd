@@ -2,8 +2,7 @@ extends Node2D
 
 const BG_WIDTH: float = 1280.0
 
-@export var good_item_scene: PackedScene
-@export var bad_item_scene: PackedScene
+@export var item_scene: PackedScene
 @export var pool_size: int = 15
 
 @export var spawn_x: float = 1380.0
@@ -18,8 +17,19 @@ const BG_WIDTH: float = 1280.0
 @export var bad_spawn_probability_step: float = 0.03
 @export var difficulty_interval_reduction: float = 0.06
 
-const GOOD_ITEM_NAMES: Array[String] = ["dinheiro", "DARF", "regularização", "nota em dia"]
-const BAD_ITEM_NAMES: Array[String] = ["caixa dois", "offshore suspeita", "recibo frio", "malha fina"]
+# --- Catálogo de itens: adicione ou edite entradas aqui ---
+const GOOD_ITEMS: Array[Dictionary] = [
+	{label = "dinheiro",      texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "DARF",          texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "regularização", texture = preload("res://assets/art/item_good_tax.svg")},
+	{label = "nota em dia",   texture = preload("res://assets/art/item_good_tax.svg")},
+]
+
+const BAD_ITEMS: Array[Dictionary] = [
+	{label = "maleta suspeita",  texture = preload("res://assets/art/item_bad_tax.png")},
+	{label = "imposto surpresa", texture = preload("res://assets/art/item_bad_surprise_tax.png")},
+]
+# ----------------------------------------------------------
 
 @onready var spawn_timer: Timer = $ItemSpawner/SpawnTimer
 @onready var far_a: Sprite2D = $Parallax/FarA
@@ -33,8 +43,7 @@ const BAD_ITEM_NAMES: Array[String] = ["caixa dois", "offshore suspeita", "recib
 var elapsed_time: float = 0.0
 var difficulty_level: int = 0
 var game_over_handled: bool = false
-var _good_pool: Array[Node2D] = []
-var _bad_pool: Array[Node2D] = []
+var _item_pool: Array[Node2D] = []
 var _consecutive_bad: int = 0
 var _last_lane: int = -1
 
@@ -52,19 +61,12 @@ func _ready() -> void:
 	spawn_timer.start()
 
 func _init_pools() -> void:
-	# Inicializa as duas pools, instanciando e mantendo invisiveis
 	for i in range(pool_size):
-		var g_item = good_item_scene.instantiate() as Node2D
-		add_child(g_item)
-		g_item.add_to_group("spawned_item")
-		g_item.call("deactivate")
-		_good_pool.append(g_item)
-
-		var b_item = bad_item_scene.instantiate() as Node2D
-		add_child(b_item)
-		b_item.add_to_group("spawned_item")
-		b_item.call("deactivate")
-		_bad_pool.append(b_item)
+		var item = item_scene.instantiate() as Node2D
+		add_child(item)
+		item.add_to_group("spawned_item")
+		item.call("deactivate")
+		_item_pool.append(item)
 
 
 func _process(delta: float) -> void:
@@ -95,12 +97,15 @@ func _on_spawn_timer_timeout() -> void:
 	var lane_index: int = _pick_lane()
 	var spawn_good: bool = _pick_item_kind()
 
-	var item: Node2D = _get_item_from_pool(_good_pool if spawn_good else _bad_pool)
+	var item: Node2D = _get_item_from_pool(_item_pool)
 	if item == null:
 		return
 
+	var catalog: Array[Dictionary] = GOOD_ITEMS if spawn_good else BAD_ITEMS
+	var entry: Dictionary = catalog[randi() % catalog.size()]
+	var kind = 0 if spawn_good else 1  # ItemKind.GOOD / BAD
+	item.call("setup", entry.label, entry.texture, kind)
 	item.call("reset_state", Vector2(spawn_x, lane_positions[lane_index]))
-	item.call("set_item_label_text", GOOD_ITEM_NAMES.pick_random() if spawn_good else BAD_ITEM_NAMES.pick_random())
 
 	_last_lane = lane_index
 	_consecutive_bad = 0 if spawn_good else _consecutive_bad + 1
@@ -122,7 +127,7 @@ func _pick_item_kind() -> bool:
 
 func _get_item_from_pool(pool: Array[Node2D]) -> Node2D:
 	for item in pool:
-		if is_instance_valid(item) and item.get("is_active") == false:
+		if is_instance_valid(item) and not item.get("is_active"):
 			return item
 	return null
 
@@ -160,7 +165,7 @@ func _handle_game_over() -> void:
 	spawn_timer.stop()
 
 	# Apenas resetamos o comportamento fisico e visao dos itens ativados
-	for item in _good_pool + _bad_pool:
+	for item in _item_pool:
 		if is_instance_valid(item) and item.get("is_active"):
 			item.call("deactivate")
 
