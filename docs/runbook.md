@@ -70,6 +70,24 @@ cp -r /tmp/gut_extracted/addons/gut /Users/dairan/Public/Dev/Games/FugaDoLeao/ad
 bash scripts/dev/export_web.sh
 ```
 
+## Configurar Gemini/Stitch Local
+
+A configuracao local do Gemini fica em `.gemini/settings.json` e nao deve ser
+versionada. O header `X-Goog-Api-Key` deve vir do Keychain, no item
+`GEMINI_STITCH_API_KEY`.
+
+Para salvar ou atualizar a chave no Keychain:
+
+```bash
+security add-generic-password -a "$USER" -s GEMINI_STITCH_API_KEY -w '<api-key>' -U
+```
+
+Para recriar `.gemini/settings.json` a partir do Keychain:
+
+```bash
+fugadoleao-gemini-sync
+```
+
 ## Exportar para Web (manual)
 
 Web export requer o build padrao do Godot (sem Mono), mesmo que o projeto
@@ -93,6 +111,7 @@ Abra `http://localhost:8080` no browser.
 - O binario `godot` em `/opt/homebrew/bin/godot` pode apontar para `/Applications/Godot.app`, que e a versao sem Mono.
 - Para consistencia neste repo, use explicitamente `/Applications/Godot_mono.app/Contents/MacOS/Godot`.
 - `.godot/` e cache local do editor e nao deve ser versionado.
+- `.gemini/` e `.wrangler/` sao configuracoes/caches locais e nao devem ser versionados.
 - `.import` de assets Godot deve continuar versionado quando fizer parte do projeto.
 
 ## Checklist Antes de Commit

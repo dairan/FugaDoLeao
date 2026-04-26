@@ -30,12 +30,14 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 
 - [x] Varredura manual rapida nao encontrou tokens obvios nos arquivos rastreados.
 - [x] Rodar varredura especializada com `gitleaks`.
-- [x] `gitleaks` nao estava instalado no ambiente desta checagem.
-- [ ] Revisar mudancas locais do Obsidian antes de publicar.
+- [x] `gitleaks` detect nao encontrou segredos no historico rastreado.
+- [x] `.gemini/`, `.wrangler/` e `docs/.obsidian/workspace.json` estao ignorados.
+- [ ] Rotacionar a chave Gemini/Stitch que ja existiu em `.gemini/settings.json` local.
 
 ## Nunca Versionar
 
 - [x] `.env` e variantes locais.
+- [x] `.gemini/` e `.wrangler/`.
 - [x] Tokens de GitHub, itch.io, Cloudflare, Google, Apple ou qualquer servico externo.
 - [x] `*.keystore` e `*.jks`.
 - [x] `*.p12`, `*.pfx`, `*.pem`, `*.key`, certificados e provisioning profiles.
@@ -85,9 +87,16 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 ## Obsidian
 
 - [x] Tema e preferencias podem ser versionados se forem intencionais.
-- [ ] Revisar `workspace.json` antes de publicar, pois pode expor nomes de arquivos locais, abas abertas ou estado de trabalho.
+- [x] Ignorar `workspace.json`, pois pode expor nomes de arquivos locais, abas abertas ou estado de trabalho.
 - [ ] Revisar plugins novos antes de commit.
 - [ ] Evitar qualquer plugin config com conta, token ou path pessoal.
+
+## Gemini/Stitch
+
+- [x] Nao versionar `.gemini/settings.json`.
+- [x] Guardar `GEMINI_STITCH_API_KEY` no Keychain.
+- [x] Recriar `.gemini/settings.json` localmente com `fugadoleao-gemini-sync`.
+- [ ] Rotacionar a chave se ela tiver sido exposta fora do Keychain.
 
 ## GitHub
 
@@ -103,7 +112,7 @@ Garantir que o repositorio pode ficar publico sem expor tokens, certificados, ch
 2. [x] Revisar `git ls-files`.
 3. [ ] Revisar historico para nomes sensiveis de arquivos.
 4. [x] Confirmar que `.gitignore` cobre signing, env e exports.
-5. [ ] Confirmar que `export_presets.cfg`, se existir, esta sanitizado.
+5. [x] Confirmar que `export_presets.cfg`, se existir, esta sanitizado.
 6. [x] Confirmar que nao ha certificados ou keystores rastreados nos arquivos rastreados atuais.
 7. [ ] Confirmar que docs nao expõem informacao pessoal desnecessaria.
 8. [ ] Ativar Secret Scanning e Push Protection no GitHub.
