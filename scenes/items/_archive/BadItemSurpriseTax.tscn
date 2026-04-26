@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://dcx8vc4fwjn51" path="res://scripts/items/tax_item.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/art/item_bad_surprise_tax.png" id="2"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 22.0
+
+[node name="BadItemSurpriseTax" type="Area2D"]
+script = ExtResource("1")
+item_kind = 1
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -85.0
+offset_top = 38.0
+offset_right = 85.0
+offset_bottom = 66.0
+text = "imposto surpresa"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
