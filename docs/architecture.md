@@ -2,7 +2,7 @@
 doc_type: architecture
 status: active
 canonical: true
-last_reviewed: 2026-04-25
+last_reviewed: 2026-05-16
 related:
   - game-overview.md
   - refactor-plan.md
@@ -33,6 +33,24 @@ tags:
 - `scenes/items/GoodItem.tscn`: item positivo.
 - `scenes/items/BadItem.tscn`: item negativo.
 - `scenes/ui/HUD.tscn`: interface da partida.
+
+## Cena Principal E Specs
+
+`scenes/main/Main.tscn` e a cena base da partida. Para manter alinhamento com o
+vault de specs em `FugaDoLeaoSpecs`, ela expoe pontos estruturais com nomes
+estaveis:
+
+- `World`: area reservada para elementos do mundo e rolagem visual.
+- `Player`: instancia jogavel atual.
+- `PlayerSpawn`: marcador da posicao inicial planejada do jogador.
+- `ItemSpawner`: spawner ativo do prototipo atual.
+- `ObstacleSpawner`: ponto reservado para separar obstaculos quando essa fatia
+  sair dos items fiscais atuais.
+- `HUD`: interface da partida.
+
+`GameState` continua sendo autoload, nao node de cena. Ele satisfaz o papel de
+estado/regras globais previsto nas specs sem precisar ser duplicado dentro de
+`Main.tscn`.
 
 ## Scripts
 

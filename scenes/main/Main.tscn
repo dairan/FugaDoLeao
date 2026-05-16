@@ -16,6 +16,8 @@
 script = ExtResource("1")
 item_scene = ExtResource("5")
 
+[node name="World" type="Node2D" parent="."]
+
 [node name="Sky" type="TextureRect" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -66,6 +68,9 @@ color = Color(0.36, 0.7, 0.28, 0.86)
 
 [node name="Player" parent="." instance=ExtResource("2")]
 
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(300, 380)
+
 [node name="Lion" parent="." instance=ExtResource("3")]
 position = Vector2(120, 380)
 
@@ -74,6 +79,8 @@ position = Vector2(120, 380)
 [node name="SpawnTimer" type="Timer" parent="ItemSpawner"]
 wait_time = 1.0
 autostart = false
+
+[node name="ObstacleSpawner" type="Node2D" parent="."]
 
 [node name="GoodSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9")
